@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROVE — Barber Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-light: #cfe0bc;
+            --green-dark:  #63783d;
+            --green-deep:  #1a2610;
+            --maple:       #b8895a;
+            --maple-warm:  #c9a06b;
+            --maple-dark:  #8b6324;
+            --cream:       #f5ede0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--green-deep);
+        }
+
+        /* ─────────────────────────────────────────
+           HERO
+        ───────────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2rem, 5vw, 4rem) clamp(2rem, 8vw, 7rem);
+        }
+
+        /* Subtle wood-grain lines baked into background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    91deg,
+                    transparent 0px,
+                    transparent 28px,
+                    rgba(184,137,90,.035) 28px,
+                    rgba(184,137,90,.035) 30px,
+                    transparent 30px,
+                    transparent 65px,
+                    rgba(184,137,90,.025) 65px,
+                    rgba(184,137,90,.025) 66px
+                );
+            pointer-events: none;
+        }
+
+        /* Depth vignette */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(8,14,4,.55) 100%);
+            pointer-events: none;
+        }
+
+        /* Maple accent bar — right edge */
+        .hero-maple-bar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg,
+                var(--maple-dark) 0%,
+                var(--maple-warm) 40%,
+                var(--maple) 60%,
+                var(--maple-dark) 100%
+            );
+        }
+
+        /* Ghost wood-grain block, right side */
+        .hero-bg-wood {
+            position: absolute;
+            right: 6%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 340px;
+            height: 480px;
+            opacity: .05;
+            background: repeating-linear-gradient(
+                1deg,
+                var(--maple) 0px,
+                var(--maple) 1px,
+                transparent 1px,
+                transparent 7px
+            );
+        }
+
+        .hero-content {
+            max-width: 1300px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Brand mark */
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: clamp(3rem, 9vh, 5.5rem);
+        }
+
+        .hero-eyebrow-text {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .55em;
+            text-transform: uppercase;
+            color: var(--maple-warm);
+        }
+
+        .hero-eyebrow-line {
+            width: 60px;
+            height: 1px;
+            background: var(--maple-warm);
+            opacity: .5;
+        }
+
+        /* Main headline */
+        .hero-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.8rem, 11vw, 10rem);
+            font-weight: 900;
+            line-height: .92;
+            color: var(--green-light);
+            margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+        }
+
+        .hero-headline .line-accent {
+            font-style: italic;
+            color: var(--maple-warm);
+            display: block;
+        }
+
+        .hero-sub {
+            font-size: clamp(.9rem, 1.5vw, 1.1rem);
+            font-weight: 300;
+            line-height: 1.75;
+            letter-spacing: .03em;
+            color: rgba(207,224,188,.6);
+            max-width: 420px;
+            margin-bottom: clamp(2.5rem, 5vh, 3.5rem);
+        }
+
+        /* CTA button */
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1.5px solid var(--maple);
+            color: var(--maple-warm);
+            background: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1.15rem 2.4rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color .3s ease;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 0; height: 100%;
+            background: var(--maple);
+            transition: width .3s ease;
+            z-index: 0;
+        }
+
+        .hero-cta:hover::before { width: 100%; }
+        .hero-cta:hover { color: var(--cream); }
+
+        .hero-cta span,
+        .hero-cta-arrow {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-cta-arrow {
+            display: inline-block;
+            transition: transform .3s ease;
+        }
+
+        .hero-cta:hover .hero-cta-arrow { transform: translateX(5px); }
+
+        /* Ghost numeral — decorative */
+        .hero-ghost-num {
+            position: absolute;
+            bottom: -1.5rem;
+            right: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(8rem, 20vw, 18rem);
+            font-weight: 900;
+            color: rgba(207,224,188,.03);
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ─────────────────────────────────────────
+           MAPLE WOOD DIVIDER
+        ───────────────────────────────────────── */
+        .wood-divider {
+            height: 14px;
+            width: 100%;
+            position: relative;
+            background: repeating-linear-gradient(
+                90deg,
+                #7a5520 0px,
+                #9a6d30 20px,
+                #b8895a 45px,
+                #c9a06b 70px,
+                #b8895a 95px,
+                #9a6d30 115px,
+                #8a6128 135px,
+                #a07840 155px,
+                #b8895a 180px,
+                #7a5520 200px
+            );
+        }
+
+        /* Grain lines on top of the divider */
+        .wood-divider::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 8px,
+                rgba(0,0,0,.09) 8px,
+                rgba(0,0,0,.09) 9px
+            );
+        }
+
+        /* ─────────────────────────────────────────
+           BRAND SECTION
+        ───────────────────────────────────────── */
+        .brand {
+            background-color: var(--green-light);
+            padding: clamp(5rem, 12vh, 9rem) clamp(2rem, 8vw, 7rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle vertical grain on brand bg */
+        .brand::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                89deg,
+                transparent 0px,
+                transparent 55px,
+                rgba(99,120,61,.04) 55px,
+                rgba(99,120,61,.04) 57px
+            );
+            pointer-events: none;
+        }
+
+        /* Maple accent bar — left edge */
+        .brand-maple-bar {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg,
+                var(--maple-dark) 0%,
+                var(--maple) 50%,
+                var(--maple-dark) 100%
+            );
+        }
+
+        .brand-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: clamp(3rem, 7vw, 8rem);
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Left: heading block */
+        .brand-tag {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--maple-dark);
+            margin-bottom: 1.8rem;
+        }
+
+        .brand-tag::before {
+            content: '';
+            width: 35px;
+            height: 2px;
+            background: var(--maple-dark);
+            flex-shrink: 0;
+        }
+
+        .brand-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--green-dark);
+        }
+
+        .brand-heading .accent {
+            font-style: italic;
+            color: var(--maple);
+            display: block;
+        }
+
+        /* Right: copy block */
+        .brand-right { padding-top: .5rem; }
+
+        .brand-body {
+            font-size: clamp(.95rem, 1.4vw, 1.1rem);
+            font-weight: 400;
+            line-height: 1.9;
+            color: rgba(26,38,16,.72);
+            margin-bottom: 1.6rem;
+        }
+
+        .brand-body strong {
+            color: var(--green-dark);
+            font-weight: 600;
+        }
+
+        .brand-quote {
+            border-left: 3px solid var(--maple);
+            padding: .4rem 0 .4rem 1.5rem;
+            margin-top: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+            line-height: 1.65;
+            color: var(--green-dark);
+        }
+
+        /* ─────────────────────────────────────────
+           RESPONSIVE
+        ───────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .brand-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-bg-wood { display: none; }
+
+            .hero-headline {
+                font-size: clamp(3.2rem, 14vw, 5rem);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-maple-bar"></div>
+        <div class="hero-bg-wood"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="hero-eyebrow-text">Grove — Barber Shop</span>
+                <span class="hero-eyebrow-line"></span>
+            </div>
+
+            <h1 class="hero-headline">
+                Sit down.<br>
+                Walk out
+                <span class="line-accent">different.</span>
+            </h1>
+
+            <p class="hero-sub">
+                No screens. No noise. Just the sound of scissors —
+                and a chair that knows exactly how you like things.
+            </p>
+
+            <a href="#" class="hero-cta">
+                <span>Book your chair</span>
+                <span class="hero-cta-arrow">→</span>
+            </a>
+        </div>
+
+        <div class="hero-ghost-num">01</div>
+    </section>
+
+    <!-- ─── MAPLE WOOD DIVIDER ─── -->
+    <div class="wood-divider" role="presentation"></div>
+
+    <!-- ─── BRAND ─── -->
+    <section class="brand">
+        <div class="brand-maple-bar"></div>
+
+        <div class="brand-content">
+            <div class="brand-left">
+                <p class="brand-tag">Who we are</p>
+                <h2 class="brand-heading">
+                    Not a salon.<br>
+                    Not a chain.<br>
+                    <span class="accent">Something better.</span>
+                </h2>
+            </div>
+
+            <div class="brand-right">
+                <p class="brand-body">
+                    We built Grove because we were tired of waiting 40 minutes in a
+                    strip-mall chair, staring at a TV, getting a cut from someone who
+                    clearly didn't care. <strong>You deserve better than that.</strong>
+                    And honestly? So does your hair.
+                </p>
+                <p class="brand-body">
+                    Grove is for people who value their time, their look, and their
+                    mornings. We're not here to upsell you on twelve products — we're
+                    here to get you right and get you out the door feeling like yourself,
+                    but sharper.
+                </p>
+                <blockquote class="brand-quote">
+                    "The best cut you'll ever get is from someone who actually listens —
+                    so that's exactly what we do."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
