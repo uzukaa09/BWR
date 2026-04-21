@@ -371,12 +371,360 @@
         }
 
         /* ─────────────────────────────────────────
+           SERVICES
+        ───────────────────────────────────────── */
+        .services {
+            background-color: var(--green-deep);
+            padding: clamp(5rem, 12vh, 9rem) clamp(2rem, 8vw, 7rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    91deg,
+                    transparent 0px,
+                    transparent 28px,
+                    rgba(184,137,90,.022) 28px,
+                    rgba(184,137,90,.022) 30px,
+                    transparent 30px,
+                    transparent 65px,
+                    rgba(184,137,90,.015) 65px,
+                    rgba(184,137,90,.015) 66px
+                );
+            pointer-events: none;
+        }
+
+        .services-maple-bar {
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg,
+                var(--maple-dark) 0%,
+                var(--maple-warm) 40%,
+                var(--maple) 60%,
+                var(--maple-dark) 100%
+            );
+        }
+
+        .services-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-header {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: clamp(3rem, 7vw, 8rem);
+            align-items: end;
+            margin-bottom: clamp(3.5rem, 7vh, 5rem);
+        }
+
+        .services-tag {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--maple-warm);
+            margin-bottom: 1.8rem;
+        }
+
+        .services-tag::before {
+            content: '';
+            width: 35px;
+            height: 2px;
+            background: var(--maple-warm);
+            flex-shrink: 0;
+        }
+
+        .services-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--green-light);
+        }
+
+        .services-heading .accent {
+            font-style: italic;
+            color: var(--maple-warm);
+            display: block;
+        }
+
+        .services-intro {
+            font-size: clamp(.9rem, 1.4vw, 1.05rem);
+            font-weight: 300;
+            line-height: 1.85;
+            color: rgba(207,224,188,.55);
+            align-self: end;
+        }
+
+        /* 3-column grid with border-grid aesthetic */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(207,224,188,.1);
+            border-left: 1px solid rgba(207,224,188,.1);
+        }
+
+        .service-card {
+            padding: clamp(1.8rem, 3.5vw, 2.8rem);
+            border-right: 1px solid rgba(207,224,188,.1);
+            border-bottom: 1px solid rgba(207,224,188,.1);
+            position: relative;
+            transition: background .35s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(207,224,188,.04);
+        }
+
+        .service-num {
+            font-family: 'Playfair Display', serif;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+            color: var(--maple);
+            display: block;
+            margin-bottom: 1.6rem;
+        }
+
+        .service-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--green-light);
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            font-size: clamp(.85rem, 1.25vw, .97rem);
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(207,224,188,.58);
+            margin-bottom: 2rem;
+        }
+
+        .service-price {
+            font-size: .76rem;
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--maple-warm);
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .service-price::before {
+            content: '';
+            width: 22px;
+            height: 1px;
+            background: var(--maple);
+        }
+
+        .services-ghost-num {
+            position: absolute;
+            bottom: -2rem;
+            left: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(8rem, 20vw, 18rem);
+            font-weight: 900;
+            color: rgba(207,224,188,.025);
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ─────────────────────────────────────────
+           TESTIMONIALS
+        ───────────────────────────────────────── */
+        .testimonials {
+            background-color: var(--green-light);
+            padding: clamp(5rem, 12vh, 9rem) clamp(2rem, 8vw, 7rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                89deg,
+                transparent 0px,
+                transparent 55px,
+                rgba(99,120,61,.04) 55px,
+                rgba(99,120,61,.04) 57px
+            );
+            pointer-events: none;
+        }
+
+        .testimonials-maple-bar {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg,
+                var(--maple-dark) 0%,
+                var(--maple) 50%,
+                var(--maple-dark) 100%
+            );
+        }
+
+        .testimonials-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonials-header {
+            margin-bottom: clamp(3rem, 6vh, 4.5rem);
+        }
+
+        .testimonials-tag {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--maple-dark);
+            margin-bottom: 1.3rem;
+        }
+
+        .testimonials-tag::before {
+            content: '';
+            width: 35px;
+            height: 2px;
+            background: var(--maple-dark);
+            flex-shrink: 0;
+        }
+
+        .testimonials-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--green-dark);
+        }
+
+        .testimonials-heading .accent {
+            font-style: italic;
+            color: var(--maple);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(1.2rem, 2.5vw, 2rem);
+        }
+
+        .testimonial-card {
+            background: rgba(99,120,61,.07);
+            border: 1px solid rgba(99,120,61,.12);
+            padding: clamp(1.8rem, 3vw, 2.5rem);
+            transition: background .3s ease, border-color .3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(99,120,61,.13);
+            border-color: rgba(99,120,61,.22);
+        }
+
+        .testimonial-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            line-height: .65;
+            color: var(--maple);
+            opacity: .45;
+            display: block;
+            margin-bottom: 1.3rem;
+            user-select: none;
+        }
+
+        .testimonial-text {
+            font-size: clamp(.9rem, 1.3vw, 1.03rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.85;
+            color: rgba(26,38,16,.76);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text strong {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--green-dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(99,120,61,.15);
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--green-light);
+            flex-shrink: 0;
+        }
+
+        .testimonial-name {
+            font-size: .87rem;
+            font-weight: 600;
+            color: var(--green-dark);
+            display: block;
+            letter-spacing: .02em;
+        }
+
+        .testimonial-detail {
+            font-size: .73rem;
+            font-weight: 400;
+            color: rgba(26,38,16,.48);
+            letter-spacing: .04em;
+            margin-top: .2rem;
+            display: block;
+        }
+
+        /* ─────────────────────────────────────────
            RESPONSIVE
         ───────────────────────────────────────── */
         @media (max-width: 900px) {
-            .brand-content {
+            .brand-content,
+            .services-header {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -385,6 +733,11 @@
 
             .hero-headline {
                 font-size: clamp(3.2rem, 14vw, 5rem);
+            }
+
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -422,7 +775,7 @@
         <div class="hero-ghost-num">01</div>
     </section>
 
-    <!-- ─── MAPLE WOOD DIVIDER ─── -->
+    <!-- ─── WOOD DIVIDER ─── -->
     <div class="wood-divider" role="presentation"></div>
 
     <!-- ─── BRAND ─── -->
@@ -456,6 +809,174 @@
                     "The best cut you'll ever get is from someone who actually listens —
                     so that's exactly what we do."
                 </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── WOOD DIVIDER ─── -->
+    <div class="wood-divider" role="presentation"></div>
+
+    <!-- ─── SERVICES ─── -->
+    <section class="services">
+        <div class="services-maple-bar"></div>
+
+        <div class="services-inner">
+            <div class="services-header">
+                <div>
+                    <p class="services-tag">What we do</p>
+                    <h2 class="services-heading">
+                        Every service,<br>
+                        <span class="accent">done properly.</span>
+                    </h2>
+                </div>
+                <p class="services-intro">
+                    Five services. Nothing unnecessary, nothing half-done.
+                    Priced to be fair, executed to be worth considerably more than you paid.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-num">01</span>
+                    <h3 class="service-name">The Cut</h3>
+                    <p class="service-desc">
+                        Starts with a consultation — we learn how your hair actually
+                        moves before scissors touch it. Precision cut, hot towel neck
+                        finish. You leave looking exactly how you wanted. Maybe better.
+                    </p>
+                    <span class="service-price">From $35</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-num">02</span>
+                    <h3 class="service-name">The Shave</h3>
+                    <p class="service-desc">
+                        Straight razor. Hot lather. Pre-shave oil, post-shave balm.
+                        The kind of shave that makes your morning routine feel like
+                        a ritual worth keeping — not a chore to get through.
+                    </p>
+                    <span class="service-price">From $28</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-num">03</span>
+                    <h3 class="service-name">The Combo</h3>
+                    <p class="service-desc">
+                        Full cut and beard work in one session, handled by the same
+                        person. Everything lines up — literally. This is the most
+                        popular thing we do. There's a reason for that.
+                    </p>
+                    <span class="service-price">From $55</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-num">04</span>
+                    <h3 class="service-name">The Beard</h3>
+                    <p class="service-desc">
+                        Shape, define, clean up whatever you're growing.
+                        Whether it's a week old or a year in, we'll bring structure
+                        to it — or help you commit to something actually intentional.
+                    </p>
+                    <span class="service-price">From $22</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-num">05</span>
+                    <h3 class="service-name">The Refresh</h3>
+                    <p class="service-desc">
+                        Between cuts, edges creep. Neckline, outline, temples —
+                        whatever needs fixing. In and out, no appointment needed.
+                        Because looking sharp shouldn't wait for a full session.
+                    </p>
+                    <span class="service-price">From $15</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-num">06</span>
+                    <h3 class="service-name">First Visit</h3>
+                    <p class="service-desc">
+                        Never been to Grove? First cut is discounted, no catch.
+                        We'd rather earn your return than upsell you on the way out.
+                        Come in once — you'll figure out the rest on your own.
+                    </p>
+                    <span class="service-price">$20 flat</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-ghost-num">02</div>
+    </section>
+
+    <!-- ─── WOOD DIVIDER ─── -->
+    <div class="wood-divider" role="presentation"></div>
+
+    <!-- ─── TESTIMONIALS ─── -->
+    <section class="testimonials">
+        <div class="testimonials-maple-bar"></div>
+
+        <div class="testimonials-inner">
+            <div class="testimonials-header">
+                <p class="testimonials-tag">Real clients</p>
+                <h2 class="testimonials-heading">
+                    Don't take our word for it.<br>
+                    Take <span class="accent">theirs.</span>
+                </h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <span class="testimonial-mark">"</span>
+                    <p class="testimonial-text">
+                        I've been going to the same barber for years. Then I moved and
+                        had to start over. Tried three different places before landing here.
+                        <strong>Walked out the first time and canceled my search.</strong>
+                        They asked how I wear my hair every day — not just what I wanted
+                        right now. No one had ever done that.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div>
+                            <span class="testimonial-name">Marcus R.</span>
+                            <span class="testimonial-detail">Client since 2023 · The Combo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-mark">"</span>
+                    <p class="testimonial-text">
+                        I have thick, curly hair. Most barbers guess their way through it.
+                        My guy here sat me down, asked three specific questions, then
+                        explained exactly what he was going to do and why.
+                        <strong>It grew out perfectly for eight weeks.</strong>
+                        That's never happened to me before — not once.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">DL</div>
+                        <div>
+                            <span class="testimonial-name">Daniel L.</span>
+                            <span class="testimonial-detail">Client since 2022 · The Cut</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <span class="testimonial-mark">"</span>
+                    <p class="testimonial-text">
+                        I was skeptical about the straight razor shave. Last one I got
+                        left me with three days of irritation. This one?
+                        <strong>Closest shave I've ever had, zero redness after.</strong>
+                        Pre-shave oil, they take their time, no rushing.
+                        I book it every month now just for that.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JT</div>
+                        <div>
+                            <span class="testimonial-name">James T.</span>
+                            <span class="testimonial-detail">Client since 2024 · The Shave</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
